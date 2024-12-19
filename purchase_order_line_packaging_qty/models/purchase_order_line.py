@@ -1,7 +1,7 @@
 # Copyright 2020 Camptocamp SA
 # Copyright 2020 ForgeFlow, S.L.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl)
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError
 
 
@@ -52,14 +52,16 @@ class PurchaseOrderLine(models.Model):
         for pol in self:
             if pol.product_packaging_qty and not pol.product_packaging:
                 raise UserError(
-                    _(
+                    self.env._(
                         "You must define a package before setting a quantity "
                         "of said package."
                     )
                 )
             if pol.product_packaging and pol.product_packaging.qty == 0:
                 raise UserError(
-                    _("Please select a packaging with a quantity bigger than 0")
+                    self.env._(
+                        "Please select a packaging with a quantity bigger than 0"
+                    )
                 )
             if pol.product_packaging and pol.product_packaging_qty:
                 pol.write(pol._prepare_product_packaging_qty_values())
@@ -100,8 +102,8 @@ class PurchaseOrderLine(models.Model):
             newqty = qty - (qty % q) + q
             return {
                 "warning": {
-                    "title": _("Warning"),
-                    "message": _(
+                    "title": self.env._("Warning"),
+                    "message": self.env._(
                         "This product is packaged by %.2f %s. You should sell %.2f %s."
                     )
                     % (pack.qty, default_uom.name, newqty, self.product_uom.name),

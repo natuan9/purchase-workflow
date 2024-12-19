@@ -2,14 +2,13 @@
 # Copyright 2020 ForgeFlow, S.L.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl)
 from odoo import fields
-from odoo.tests import SavepointCase
+from odoo.tests.common import TransactionCase
 
 
-class TestPurchaseOrderLinePackagingQty(SavepointCase):
+class TestPurchaseOrderLinePackagingQty(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
         cls.partner = cls.env.ref("base.res_partner_12")
         cls.product = cls.env.ref("product.product_product_9")
         cls.packaging = cls.env["product.packaging"].create(

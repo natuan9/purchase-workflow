@@ -67,6 +67,18 @@ Contributors
 - Akim Juillerat <akim.juillerat@camptocamp.com>
 - Miquel Raïch <miquel.raich@forgeflow.com>
 
+Trobz
+
+- Tuan Nguyen <tuanna@trobz.com>
+
+Other credits
+-------------
+
+The migration of this module from 14.0 to 18.0 has been financially
+supported by:
+
+- Camptocamp
+
 Maintainers
 -----------
 
